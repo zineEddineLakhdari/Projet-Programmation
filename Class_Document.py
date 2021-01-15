@@ -2,7 +2,7 @@
 """
 Created on Fri Dec  4 11:40:54 2020
 
-@author: ZineEddine
+@author: ZineEddine & Libasse
 """
 
 from gensim.summarization.summarizer import summarize
@@ -16,7 +16,6 @@ class Document():
         self.author = author
         self.text = text
         self.url = url
-    
     # getters
     
     def get_author(self):

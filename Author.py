@@ -4,7 +4,7 @@
 """
 Created on Fri Dec  4 11:40:16 2020
 
-@author: ZineEddine
+@author:ZineEddine & Libasse
 """
 #Classe author qui contient les différentes méthodes
 class Author():
@@ -13,7 +13,7 @@ class Author():
         self.name = name
         self.production = {}
         self.ndoc = 0
-       
+        
     def add(self, doc):     
         self.production[self.ndoc] = doc
         self.ndoc += 1
@@ -23,4 +23,8 @@ class Author():
     #return son nom
     def __repr__(self):
         return self.name
+    
+    
+author = Author("Julien")
+print(author)
     

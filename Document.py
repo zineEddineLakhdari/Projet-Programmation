@@ -2,14 +2,13 @@
 """
 Created on Fri Dec 11 10:34:17 2020
 
-@author: ZineEddine
+@author: ZineEddine & Libasse
 """
 
 # package permettant d'incrémenter l'identifiant unique à attribuer à un document
  
 
 from Class_Document import Document
-
 class RedditDocument(Document):
     
     def __init__(self, date, title, author, text, url, nb_comments):
