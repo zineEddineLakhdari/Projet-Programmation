@@ -2,7 +2,7 @@
 Projet programmation en python
 Réaliser par : ZineEddine Lakhdari
                Libasse Mboup
-
+\n
 ########## Exécution ###########
 -Pour exécuter le programme :
   1- terminal 
