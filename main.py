@@ -11,18 +11,14 @@ Created on Sat Jan  9 02:15:39 2021
 ################################## Déclaration des classes ##################################
 
 import datetime as dt
-import re
-
-import pickle
-
+import itertools
+import pandas as pd
 from Corpus import Corpus
-from Author import Author
 from Class_Document import Document
-
 import praw
-
 import urllib.request
 import xmltodict   
+
 
 
 
@@ -32,7 +28,7 @@ corpus = Corpus("Corona")
 
 
 reddit = praw.Reddit(client_id='A7Cy6zC5PKFqoQ', client_secret='nLLooEBnPAnYNP2yonryN_97foY', user_agent='Reddit WebScraping')
-hot_posts = reddit.subreddit('Coronavirus').hot(limit=100)
+hot_posts = reddit.subreddit('Coronavirus').hot(limit=10)
 for post in hot_posts:
     datet = dt.datetime.fromtimestamp(post.created)
     txt = post.title + ". "+ post.selftext
@@ -45,7 +41,7 @@ for post in hot_posts:
                    post.url)
     corpus.add_doc(doc)
 
-url = 'http://export.arxiv.org/api/query?search_query=all:covid&start=0&max_results=100'
+url = 'http://export.arxiv.org/api/query?search_query=all:covid&start=0&max_results=10'
 data =  urllib.request.urlopen(url).read().decode()
 docs = xmltodict.parse(data)['feed']['entry']
 
@@ -69,11 +65,29 @@ for i in docs:
  
 #Chercher dans le corpus le mot passer en paramètre 
 #Affichage des lignes ou le mot est apparue
-
-corpus.search("covid-19")
-
+#corpus.search("covid-19")
 
 
+#creation d'une nouvelle liste qui contient les différents mots nettoyer.
+all_doc = []
+for i in range(len(corpus.get_coll())):   
+    all_doc.append(corpus.get_doc(i).get_text().split())
+#creation de la matrice de co-occurence word 2 word
+x = corpus.prepapre_to_matrix()
+ # cration d'une liste en utilisants plusieurs listes
+data = list(itertools.chain.from_iterable(x))
+print("######################## Les WORDS #########################")
+print(data)
+#constructionde la matrice de co-occurence avec vocab contenant des mots
+matrix, vocab_index = Corpus.generate_co_occurrence_matrix(data)
+ 
+#transformation de la matrice en dataframe
+data_matrix = pd.DataFrame(matrix, index=vocab_index,columns=vocab_index)
+
+print("######################## Matrice de Co Ocurrence #########################")
+print(data_matrix)
+#sauvegarde de la matrice en csv
+data_matrix.to_csv('co-occurancy_matrix.csv')
 
 
 
