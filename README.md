@@ -20,7 +20,7 @@ GePhi est un logiciel gratuit de visualisation des données. C’est une applica
 
 Les performances de visualisation dépendent directement de la taille du graphe. Aucune condition matérielle minimale n’est requise (https://gephi.org/users/requirements/).
 
-Télécharger la dernière version sur https://gephi.org/users/download/
+Télécharger la dernière version sur le site officiel de GEPHI.
 
 Installer le logiciel via l’exécutable téléchargé précédemment.
 
