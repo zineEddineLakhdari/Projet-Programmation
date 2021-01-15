@@ -8,7 +8,10 @@ Réaliser par : ZineEddine Lakhdari
  ```python
 python3 main.py
 ```
- 
+-Pour les tests unitaires : 
+ ```python
+python3 Unit_Test.py
+```
 ## Affichage du graphe 
 
 -Installation de GEPHI
